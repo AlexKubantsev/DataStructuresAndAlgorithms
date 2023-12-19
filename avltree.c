@@ -125,17 +125,26 @@ struct AVLNode *deleteNode(struct AVLNode *root, int key)
     }
     return root;
 }
-void preOrderOutput(struct AVLNode *root)
+void postOrderPrint(struct AVLNode *root)
 {
-    if (root){
-        printf("%d ", root->key);
-        preOrderOutput(root->left);
-        preOrderOutput(root->right);
-    }
+    if (!root)
+        return;
+    postOrderPrint(root->left);
+    postOrderPrint(root->right);
+    printf("%d ", root->key);
 }
 
 
 int main(void)
 {
+    struct AVLNode *root = NULL;
+    root = newNode(33);
+    root = insertNode(root, 9);
+    root = insertNode(root, 8);
+    root = insertNode(root, 21);
+    root = insertNode(root, 11);
+    root = insertNode(root, 53);
+    root = insertNode(root, 61);
+    postOrderPrint(root);
     return 0;
 }
